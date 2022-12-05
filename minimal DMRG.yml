@@ -1,0 +1,16 @@
+simulation_class : GroundStateSearch
+
+directory: results
+output_filename : a_minimal_DMRG.h5
+
+model_class :  TobleroneModel
+model_params :
+    L : 1
+    bc_MPS : finite
+    J1: ... (other strengths J2 etc.)
+
+initial_state_params:
+    method : lat_product_state
+    product_state : [[up], [down]]
+
+algorithm_class: TwoSiteDMRGEngine
