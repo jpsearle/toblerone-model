@@ -1,6 +1,7 @@
 from tenpy.models.model import CouplingMPOModel
 from tenpy.models.lattice import NLegLadder
 from tenpy.networks.site import SpinHalfSite
+import numpy as np
 
 class TobleroneModel(CouplingMPOModel):
     r"""Spin-half particles in a Toblerone (layered 3-site triangular lattice).
@@ -53,13 +54,13 @@ class TobleroneModel(CouplingMPOModel):
             self.add_onsite(hx, j, "Sx")
             
         #Coupling between lattice sites in the same unit cell.
-        dx = 0
+        dx = np.array([0]) ##sort array
         self.add_coupling(J1, 0, "Sz", 1, "Sz", dx)
         self.add_coupling(J1, 1, "Sz", 2, "Sz", dx)
         self.add_coupling(J2, 2, "Sz", 0, "Sz", dx)
         
         #Coupling between lattice sites in adjacent unit cells.
-        dx = 1
+        dx = np.array([1])
         for j in range(3):
             self.add_coupling(Jp, j, "Sz", j, "Sz", dx)
         
